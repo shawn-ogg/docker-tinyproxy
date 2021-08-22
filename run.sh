@@ -90,6 +90,10 @@ enableLogFile() {
 	sed -i -e"s,^#LogFile,LogFile," $PROXY_CONF
 }
 
+disableViaHeader() {
+	sed -i -e"s,^#DisableViaHeader,DisableViaHeader," $PROXY_CONF
+}
+
 setAccess() {
     if [[ "$1" == *ANY* ]]; then
         sed -i -e"s/^Allow /#Allow /" $PROXY_CONF
@@ -181,6 +185,8 @@ setFilter
 setTimeout
 # Enable log to file
 enableLogFile
+# Disable via header
+disableViaHeader
 # Start Tinyproxy
 startService
 # Tail Tinyproxy log
